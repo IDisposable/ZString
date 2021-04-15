@@ -9,10 +9,10 @@ ZString
 * All append methods are generics(`Append<T>(T value)`) and write to buffer directly instead of concatenate `value.ToString`
 * `T1`~`T16` AppendFormat(`AppendFormat<T1,...,T16>(string format, T1 arg1, ..., T16 arg16)` avoids boxing of struct argument
 * Also `T1`~`T16` Concat(`Concat<T1,...,T16>(T1 arg1, ..., T16 arg16)`) avoid boxing and `value.ToString` allocation
-* Convinient `ZString.Format/Concat/Join` methods can replace instead of `String.Format/Concat/Join`
+* Convenient `ZString.Format/Concat/Join` methods can replace instead of `String.Format/Concat/Join`
 * Can build both Utf16(`Span<char>`) and Utf8(`Span<byte>`) directly
-* Can use inner buffer to avoid allocate final string
-* Integrated with Unity TextMeshPro to avoid string allocation
+* Can use inner buffer to avoid allocating final string
+* Integrated with [Unity TextMeshPro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) to avoid string allocation
 
 ![image](https://user-images.githubusercontent.com/46207/74473217-9061e200-4ee6-11ea-9a77-14d740886faa.png)
 
@@ -27,7 +27,7 @@ This graph compares following codes.
 
 `"x:" + x + " y:" + y + " z:" + z` is converted to `String.Concat(new []{ "x:", x.ToString(), " y:", y.ToString(), " z:", z.ToString() })` by C# compiler. It has each `.ToString` allocation and params array allocation. `string.Format` calls `String.Format(string, object, object, object)` so each arguments causes int -> object boxing.
 
-All `ZString` methods only allocate final string. Also, `ZString` has enabled to access inner buffer so if output target has stringless api(like Unity TextMeshPro's `SetCharArray`), you can achieve completely zero allocation.
+All `ZString` methods only allocate the final string. Also, `ZString` is enabled access to inner buffer so if output target has stringless api(like Unity TextMeshPro's `SetCharArray`), you can achieve completely zero allocation.
 
 The blog post of detailed explanation by author: [medium@neuecc/ZString](https://medium.com/@neuecc/zstring-zero-allocation-stringbuilder-for-net-core-and-unity-f3163c88c887)
 
