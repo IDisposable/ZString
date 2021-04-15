@@ -27,7 +27,7 @@ This graph compares following codes.
 
 `"x:" + x + " y:" + y + " z:" + z` is converted to `String.Concat(new []{ "x:", x.ToString(), " y:", y.ToString(), " z:", z.ToString() })` by C# compiler. It has each `.ToString` allocation and params array allocation. `string.Format` calls `String.Format(string, object, object, object)` so each arguments causes int -> object boxing.
 
-All `ZString` methods only allocate the final string. Also, `ZString` is enabled access to inner buffer so if output target has stringless api(like Unity TextMeshPro's `SetCharArray`), you can achieve completely zero allocation.
+All `ZString` methods only allocate the final string. Also, `ZString` enables access to inner buffer so if output target has stringless api (like Unity TextMeshPro's `SetCharArray`), you can achieve completely zero allocation.
 
 The blog post of detailed explanation by author: [medium@neuecc/ZString](https://medium.com/@neuecc/zstring-zero-allocation-stringbuilder-for-net-core-and-unity-f3163c88c887)
 
